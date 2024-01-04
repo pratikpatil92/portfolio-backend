@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * heading router
+ * about-me router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::heading.heading');
+module.exports = createCoreRouter('api::about-me.about-me');

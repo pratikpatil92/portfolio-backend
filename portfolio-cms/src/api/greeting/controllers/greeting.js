@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * heading controller
+ * greeting controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::heading.heading');
+module.exports = createCoreController('api::greeting.greeting');

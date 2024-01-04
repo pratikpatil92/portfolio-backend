@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social_links",
+  "info": {
+    "singularName": "social-link",
+    "pluralName": "social-links",
+    "displayName": "social_link"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "appName": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

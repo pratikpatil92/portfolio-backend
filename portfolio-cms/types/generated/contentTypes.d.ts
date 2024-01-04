@@ -362,38 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiHeadingHeading extends Schema.CollectionType {
-  collectionName: 'headings';
-  info: {
-    singularName: 'heading';
-    pluralName: 'headings';
-    displayName: 'heading';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    greeting: Attribute.String;
-    name: Attribute.String;
-    profession: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::heading.heading',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::heading.heading',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -507,6 +475,50 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.folder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
@@ -665,43 +677,224 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiAboutMeAboutMe extends Schema.CollectionType {
+  collectionName: 'about_mes';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
+    singularName: 'about-me';
+    pluralName: 'about-mes';
+    displayName: 'about_me';
     description: '';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
+    description: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 2000;
       }>;
-    code: Attribute.String & Attribute.Unique;
+    aboutMePic: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-me.about-me',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-me.about-me',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExperienceExperience extends Schema.CollectionType {
+  collectionName: 'experiences';
+  info: {
+    singularName: 'experience';
+    pluralName: 'experiences';
+    displayName: 'Experience';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    companyName: Attribute.String;
+    duration: Attribute.String;
+    position: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::experience.experience',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::experience.experience',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGreetingGreeting extends Schema.SingleType {
+  collectionName: 'greetings';
+  info: {
+    singularName: 'greeting';
+    pluralName: 'greetings';
+    displayName: 'greeting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    greetings: Attribute.String;
+    position: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::greeting.greeting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::greeting.greeting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProfilePicProfilePic extends Schema.SingleType {
+  collectionName: 'profile_pics';
+  info: {
+    singularName: 'profile-pic';
+    pluralName: 'profile-pics';
+    displayName: 'profilePic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pic: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::profile-pic.profile-pic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::profile-pic.profile-pic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.String;
+    technology: Attribute.JSON;
+    link: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSkillSkill extends Schema.CollectionType {
+  collectionName: 'skills';
+  info: {
+    singularName: 'skill';
+    pluralName: 'skills';
+    displayName: 'skill';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    percentage: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::skill.skill',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::skill.skill',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSocialLinkSocialLink extends Schema.CollectionType {
+  collectionName: 'social_links';
+  info: {
+    singularName: 'social-link';
+    pluralName: 'social-links';
+    displayName: 'social_link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    appName: Attribute.String;
+    link: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social-link.social-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social-link.social-link',
       'oneToOne',
       'admin::user'
     > &
@@ -719,13 +912,19 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::heading.heading': ApiHeadingHeading;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::about-me.about-me': ApiAboutMeAboutMe;
+      'api::experience.experience': ApiExperienceExperience;
+      'api::greeting.greeting': ApiGreetingGreeting;
+      'api::profile-pic.profile-pic': ApiProfilePicProfilePic;
+      'api::project.project': ApiProjectProject;
+      'api::skill.skill': ApiSkillSkill;
+      'api::social-link.social-link': ApiSocialLinkSocialLink;
     }
   }
 }

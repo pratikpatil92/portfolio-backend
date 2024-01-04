@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "profile_pics",
+  "info": {
+    "singularName": "profile-pic",
+    "pluralName": "profile-pics",
+    "displayName": "profilePic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
