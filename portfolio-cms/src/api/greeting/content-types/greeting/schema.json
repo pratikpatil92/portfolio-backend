@@ -4,7 +4,8 @@
   "info": {
     "singularName": "greeting",
     "pluralName": "greetings",
-    "displayName": "greeting"
+    "displayName": "greeting",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,16 @@
     },
     "position": {
       "type": "string"
+    },
+    "pic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

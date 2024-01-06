@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "about_mes",
+  "kind": "singleType",
+  "collectionName": "abouts",
   "info": {
-    "singularName": "about-me",
-    "pluralName": "about-mes",
-    "displayName": "about_me",
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "about",
     "description": ""
   },
   "options": {
@@ -12,9 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "description": {
-      "type": "text",
-      "maxLength": 2000
+    "Description": {
+      "type": "text"
+    },
+    "numberOfProject": {
+      "type": "integer"
     },
     "aboutMePic": {
       "type": "media",
@@ -26,6 +28,9 @@
         "videos",
         "audios"
       ]
+    },
+    "yearOfExperience": {
+      "type": "integer"
     }
   }
 }
