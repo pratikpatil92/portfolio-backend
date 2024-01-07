@@ -55,10 +55,12 @@ module.exports = ({ env }) => {
         database: env('DATABASE_NAME', 'portfolioData'),
         user: env('DATABASE_USERNAME', 'postgres'),
         password: env('DATABASE_PASSWORD', 'pratik@08'),
-        ssl: {
+        ssl: env.bool('DATABASE_SSL', false) && {
+          key: env('DATABASE_SSL_KEY', undefined),
+          cert: env('DATABASE_SSL_CERT', undefined),
           rejectUnauthorized: env.bool(
             'DATABASE_SSL_REJECT_UNAUTHORIZED',
-            false
+            true
           ),
         },
         schema: env('DATABASE_SCHEMA', 'public'),
